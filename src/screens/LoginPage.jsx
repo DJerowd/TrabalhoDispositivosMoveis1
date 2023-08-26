@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const LoginPage = ({ onLogin }) => {
@@ -11,7 +11,7 @@ const LoginPage = ({ onLogin }) => {
       setError('');
       onLogin();
     } else {
-      setError('Por favor, preencha todos os campos.');
+      setError('Por favor, preencha todos os campos em falta.');
     }
   };
 
@@ -23,7 +23,7 @@ const LoginPage = ({ onLogin }) => {
         value={email}
         style={styles.input}
       />
-      <TextInput
+      <TextInput 
         placeholder="Senha"
         onChangeText={setPassword}
         value={password}
@@ -46,13 +46,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   input: {
-    width: '100%',
-    height: 40,
-    borderColor: '#ca00cc',
-    borderWidth: 2,
-    borderRadius: 4,
-    paddingHorizontal: 10,
+    width: 300,
+    height: 50,
+    backgroundColor: '#626262',
+    borderColor: '#00000070',
+    borderWidth: 4,
+    borderRadius: 10,
+    paddingHorizontal: 20,
     marginBottom: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   button: {
     backgroundColor: '#000000',
@@ -61,11 +64,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#fff00f',
+    color: '#FF0000D0',
+    fontSize: 20,
     fontWeight: 'bold',
   },
   error: {
-    color: '#ff0000',
+    color: '#FF0000D0',
+    fontSize: 16,
+    fontWeight: 'bold',
     marginBottom: 10,
   },
 });

@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
-
+import { React, useState, useEffect } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -17,17 +16,20 @@ const ItemList = () => {
   }, []);
 
   const renderItem = ({ item }) => (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => handleItemPress(item)}
+    >
       <Image
         source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.url.split('/')[6]}.png` }}
         style={styles.image}
       />
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.url}>{item.url}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
-  return (
+return (
     <View style={styles.container}>
       {loading ? (
         <Text>Carregando...</Text>
@@ -45,30 +47,35 @@ const ItemList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#727272',
     justifyContent: 'center',
     alignContent: 'center',
+    padding: 10,
+    marginTop: 15,
   },
   item: {
-    backgroundColor: '#202020',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 8,
-    flexDirection: 'row',
+    backgroundColor: '#A0A0A0',
+    padding: 40,
+    margin: 10,
+    borderRadius: 20,
+    flexDirection: 'column',
     alignItems: 'center',
   },
   image: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
+    backgroundColor: '#000000',
+    width: 240,
+    height: 240,
+    margin: 10,
   },
   name: {
-    fontSize: 18,
+    color: '#000000',
+    fontSize: 30,
     fontWeight: 'bold',
   },
   url: {
-    color: '#555',
+    color: '#000000',
+    fontSize: 14,
+    fontWeight: 'bold',
+    paddingTop: 10,
   },
 });
 

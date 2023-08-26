@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { React, useState } from 'react';
+import {SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
 
@@ -11,13 +11,13 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
         <ItemList />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -26,42 +26,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#727272',
+    backgroundColor: '#202020',
   },
 });
 
 export default App;
-
-
-/*
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import LoginPage from './src/screens/LoginPage';
-import ItemList from './src/screens/ItemList';
-
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  return (
-    <View style={styles.container}>
-      {isLoggedIn ? (
-        <ItemList />
-      ) : (
-        <LoginPage onLogin={handleLogin} />
-      )}
-    </View>
-  );
-};
-*/
-
-
-
-
-
 
 /*
       Projeto Disciplina Desenvolvimento de aplicativos móveis - 4o período
@@ -106,9 +75,4 @@ Projeto
 
 
     API: https://pokeapi.co/api/v2/pokemon
-
-
-
-
-
 */
