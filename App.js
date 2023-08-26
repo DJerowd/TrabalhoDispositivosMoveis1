@@ -1,41 +1,82 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import LoginPage from './src/screens/LoginPage';
+import ItemList from './src/screens/ItemList';
 
-export default function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {isLoggedIn ? (
+        <ItemList />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#727272',
   },
 });
 
+export default App;
+
+
 /*
-Projeto Disciplina Desenvolvimento de
-aplicativos móveis - 4o período
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import LoginPage from './src/screens/LoginPage';
+import ItemList from './src/screens/ItemList';
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <View style={styles.container}>
+      {isLoggedIn ? (
+        <ItemList />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
+    </View>
+  );
+};
+*/
+
+
+
+
+
+
+/*
+      Projeto Disciplina Desenvolvimento de aplicativos móveis - 4o período
 
   Descrição geral
 
-  O projeto consiste na elaboração de um aplicativo, utilizando a tecnologia React Native,
-utilizando as linguagens de programação JavaScript ou TypeScript. O projeto poderá ser
-criado utilizando React Native CLI ou Expo.
-  O projeto será EM DUPLAS ou INDIVIDUAL. Cabe ao acadêmico decidir.
-  A entrega será via GitHub: vocês devem subir o código no GitHub e enviar o link pelo portal.
-  ATENÇÃO, TRABALHOS EM FORMATO .ZIP OU .RAR DENTRO DO GITHUB NÃO SERÃO
-AVALIADOS. Subam os códigos de forma correta, e frequentemente, não apenas um único
-commit com todo o trabalho.
-Trabalhos feitos em duplas terão uma avaliação extra: devem ter commits dos dois
-acadêmicos no GitHub. Se tiver commits apenas de um, ou uma grande diferença entre os
-dois alunos, a nota será prejudicada
+    - O projeto consiste na elaboração de um aplicativo, utilizando a tecnologia React Native, utilizando
+     as linguagens de programação JavaScript ou TypeScript. O projeto poderá ser criado utilizando React 
+     Native CLI ou Expo.
+    - O projeto será EM DUPLAS ou INDIVIDUAL. Cabe ao acadêmico decidir.
+    - A entrega será via GitHub: vocês devem subir o código no GitHub e enviar o link pelo portal.
+    - ATENÇÃO, TRABALHOS EM FORMATO .ZIP OU .RAR DENTRO DO GITHUB NÃO SERÃO AVALIADOS. 
+    - Subam os códigos de forma correta, e frequentemente, não apenas um único commit com todo o trabalho.
+    - Trabalhos feitos em duplas terão uma avaliação extra: devem ter commits dos dois acadêmicos no GitHub. 
+    - Se tiver commits apenas de um, ou uma grande diferença entre os dois alunos, a nota será prejudicada.
 
 Projeto
 
@@ -62,4 +103,12 @@ Projeto
       CSS será avaliado! Não precisam criar as telas mais bonitas, mas devem aplicar estilos
     para ficar visualmente agradável. Será permitida a utilização de bibliotecas externas, seja
     para funcionalidades ou componentes.
+
+
+    API: https://pokeapi.co/api/v2/pokemon
+
+
+
+
+
 */
