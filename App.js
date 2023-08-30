@@ -1,7 +1,13 @@
 import { React, useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
+import ItemDetails from './src/screens/ItemDetails';
+import LoginPageExtra from './src/screens/LoginPageExtra';
+import ItemListExtra from './src/screens/ItemListExtra';
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,12 +16,13 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
+
   return (
     <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
-        <ItemList />
+        <ItemListExtra />
       ) : (
-        <LoginPage onLogin={handleLogin} />
+        <LoginPageExtra onLogin={handleLogin} />
       )}
     </SafeAreaView>
   );
@@ -60,6 +67,8 @@ Projeto
       
       Página de detalhes sobre o item: deve ser acessada através da página de listagem (ao
     clicar no item da listagem), e conter dados vindos de uma API.
+    
+
     
       Página extra: Nessa página vocês podem escolher renderizar uma outra listagem
     (requisitando uma API diferente da página Home), outra tela com detalhes, tela com

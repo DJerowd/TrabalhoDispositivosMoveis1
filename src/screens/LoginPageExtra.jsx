@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const LoginPage = ({ onLogin }) => {
+const LoginPageExtra = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   input: {
     width: 300,
     height: 50,
-    backgroundColor: '#626262',
+    backgroundColor: '#ffffff',
     borderColor: '#00000070',
     borderWidth: 4,
     borderRadius: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#626262',
+    color: '#ffffff',
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+export default LoginPageExtra;

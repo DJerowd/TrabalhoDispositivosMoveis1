@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const ItemList = () => {
+const ItemListExtra = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://pokeapi.co/api/v2/pokemon/')
+    axios.get('https://digimon-api.vercel.app/api/digimon')
       .then((response) => {
-        setItems(response.data.results);
+        setItems(response.data);
         setLoading(false);
       })
       .catch((error) => console.error(error));
@@ -20,18 +20,18 @@ const ItemList = () => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => handleItemPress(item)}
+      onPress={() => navigation.navigate('ItemDetails', { item })}
     >
       <Image
-        source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.url.split('/')[6]}.png` }}
+        source={{ uri: item.img }}
         style={styles.image}
       />
       <Text style={styles.name}>{item.name}</Text>
-      <Text style={styles.url}>{item.url}</Text>
+      <Text style={styles.level}>Level: {item.level}</Text>
     </TouchableOpacity>
   );
 
-  
+
 
 return (
     <View style={styles.container}>
@@ -59,10 +59,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
   },
   item: {
-    backgroundColor: '#A0A0A0',
+    backgroundColor: '#ffffff',
     padding: 6,
     margin: 10,
-    borderRadius: 20,
+    borderRadius: 6,
+    flexDirection: 'column',
     alignItems: 'center',
   },
   image: {
@@ -76,11 +77,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-  url: {
+  level: {
     color: '#000000',
     fontSize: 14,
     fontWeight: 'bold',
-    paddingTop: 10,
   },
   loading: {
     color: '#000000',
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemList;
+export default ItemListExtra;
