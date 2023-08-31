@@ -1,13 +1,10 @@
 import { React, useState } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
-import ItemDetails from './src/screens/ItemDetails';
 import LoginPageExtra from './src/screens/LoginPageExtra';
 import ItemListExtra from './src/screens/ItemListExtra';
 
-const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +25,7 @@ const App = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -36,6 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
   },
 });
+
 
 export default App;
 
