@@ -45,21 +45,24 @@ const ItemListExtra = ({ navigation }) => {
   
 
   return (
-    <View style={styles.container}>
-      {loading ? (
-        <Text style={styles.loading}>Carregando...</Text>
-      ) : (
-        <FlatList
-          data={formatData(items, 2)}
-          renderItem={({ item }) => (
-            <View style={styles.row}>
-              {item.map((itemData) => renderItem({ item: itemData }))}
-            </View>
-          )}
-          keyExtractor={(item) => item[0].name}
-          contentContainerStyle={styles.listContainer}
-        />
-      )}
+    <View>
+      <View style={styles.topBar}></View>
+      <View style={styles.container}>
+        {loading ? (
+          <Text style={styles.loading}>Carregando...</Text>
+        ) : (
+          <FlatList
+            data={formatData(items, 2)}
+            renderItem={({ item }) => (
+              <View style={styles.row}>
+                {item.map((itemData) => renderItem({ item: itemData }))}
+              </View>
+            )}
+            keyExtractor={(item) => item[0].name}
+            contentContainerStyle={styles.listContainer}
+          />
+        )}
+      </View>
     </View>
   );
   };
@@ -68,9 +71,13 @@ const ItemListExtra = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
-    backgroundColor: '#000',
+    backgroundColor: '#F0F0F0',
     width: 400,
+  },
+  topBar: {
+    backgroundColor: '#FF5000',
+    width: 400,
+    height: 30,
   },
   listContainer: {
     paddingHorizontal: 10,
