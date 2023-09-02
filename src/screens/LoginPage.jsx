@@ -78,16 +78,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 100,
   },
+  backgroundImage: {
+    flex: 1,
+  },
+  error: {
+    color: '#00D2ff',
+    backgroundColor: '#0E0E0EA0',
+    padding: 4,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+
   topBar: {
     backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
     width: 400,
-    height: 100,
-    paddingTop: 20,
+    height: 120,
+    paddingTop: 40,
   },
   title: {
-    color: '#E0E0E0',
+    color: '#ffffff',
     fontSize: 60,
     fontWeight: 'bold',
   },
@@ -96,9 +110,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginBottom: 20,
   },
-  backgroundImage: {
-    flex: 1,
-  },
+
   input: {
     width: 300,
     height: 50,
@@ -121,16 +133,6 @@ const styles = StyleSheet.create({
     color: '#00D2ff',
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  error: {
-    color: '#00D2ff',
-    backgroundColor: '#0E0E0EA0',
-    padding: 4,
-    paddingHorizontal: 8,
-    borderRadius: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
   },
 });
 

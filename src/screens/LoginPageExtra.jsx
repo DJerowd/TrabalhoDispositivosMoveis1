@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import DigimonLogo from '../assets/DigimonLogo.png';
 
 const LoginPageExtra = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -37,7 +36,7 @@ const LoginPageExtra = ({ onLogin }) => {
           source={{ uri: 'https://www.pngall.com/wp-content/uploads/2/Digimon-Logo-Transparent.png' }}
           style={styles.digimonLogo}
         />
-        <Text style={styles.text}>Login</Text>
+        <Text style={styles.text}>Login:</Text>
         <TextInput
           placeholder="Email"
           onChangeText={setEmail}
@@ -74,10 +73,7 @@ const styles = StyleSheet.create({
   topBar: {
     backgroundColor: '#Ff5000',
     width: 400,
-    height: 30,
-    backgroundImage: `url(${DigimonLogo})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    height: 70,
   },
   input: {
     width: 300,
@@ -104,9 +100,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#171717',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 20,
+    margin: 20,
   },
   digimonLogo: {
     width: 320,

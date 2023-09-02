@@ -8,6 +8,7 @@ const ItemList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
+
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/?offset=${(currentPage - 1) * itemsPerPage}&limit=${itemsPerPage}`)
@@ -33,8 +34,8 @@ const ItemList = () => {
     </TouchableOpacity>
   );
 
+
   const handleItemPress = (item) => {
-    // Implemente a ação que deseja quando um item é pressionado
     console.log('Item Pressed:', item.name);
   };
 
@@ -75,7 +76,7 @@ return (
         />
       )}
     </View>
-    <View style={styles.pageSelection}>
+    <View style={styles.pageBar}>
 
       <TouchableOpacity style={styles.pageButton} onPress={handlePrevPage}>
         <Text style={styles.pageButtonText}>Página Anterior</Text>
@@ -106,11 +107,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   loading: {
-    color: '#000000',
-    fontSize: 20,
+    color: '#00D2ff',
+    fontSize: 30,
     fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#0E0E0EA0',
+    padding: 4,
+    paddingHorizontal: 8,
+    borderRadius: 10,
   },
 
   topBar: {
@@ -118,11 +122,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 400,
-    height: 100,
-    paddingTop: 20,
+    height: 120,
+    paddingTop: 40,
   },
   title: {
-    color: '#E0E0E0',
+    color: '#ffffff',
     fontSize: 60,
     fontWeight: 'bold',
   },
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
 
-  pageSelection: {
+  pageBar: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

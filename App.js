@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import {SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import {SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
 import LoginPageExtra from './src/screens/LoginPageExtra';
@@ -8,19 +8,54 @@ import ItemListExtra from './src/screens/ItemListExtra';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedInExtra, setIsLoggedInExtra] = useState(false);
+  
+  const [currentPage, setCurrentPage] = useState('LoginPage');
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
+  const handleLoginExtra = () => {
+    setIsLoggedInExtra(true);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
 
   return (
     <SafeAreaView style={styles.container}>
-      {isLoggedIn ? (
-        <ItemList />
+      {currentPage === 'LoginPage' ? (
+        isLoggedIn ? (
+          <ItemList />
+        ) : (
+          <LoginPage onLogin={handleLogin} />
+        )
       ) : (
-        <LoginPage onLogin={handleLogin} />
+        isLoggedInExtra ? (
+          <ItemListExtra />
+        ) : (
+          <LoginPageExtra onLogin={handleLoginExtra} />
+        )
       )}
+   
+
+      <View style={styles.pageNavigation}>
+        <TouchableOpacity
+          style={currentPage === 'LoginPage' ? styles.activeButton : styles.inactiveButton}
+          onPress={() => handlePageChange('LoginPage')}
+        >
+          <Text style={styles.buttonText}>POKEDEX</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={currentPage === 'LoginPageExtra' ? styles.activeButton : styles.inactiveButton}
+          onPress={() => handlePageChange('LoginPageExtra')}
+        >
+          <Text style={styles.buttonText}>DIGIMON</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -31,6 +66,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  pageNavigation: {
+    paddingHorizontal: 100,
+    flexDirection: 'row',
+    backgroundColor: '#000000',
+  },
+  activeButton: {
+    backgroundColor: '#101010',
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 40,
+  },
+  inactiveButton: {
+    backgroundColor: '#404040',
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 40,
+  },
+  buttonText: {
+    color: '#E0E0E0E0',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
 

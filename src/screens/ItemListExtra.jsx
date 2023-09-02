@@ -46,7 +46,12 @@ const ItemListExtra = ({ navigation }) => {
 
   return (
     <View>
-      <View style={styles.topBar}></View>
+      <View style={styles.topBar}>
+      <Image
+        source={{ uri: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Digimon_Logo.svg/1200px-Digimon_Logo.svg.png` }}
+        style={styles.logo}
+      />
+      </View>
       <View style={styles.container}>
         {loading ? (
           <Text style={styles.loading}>Carregando...</Text>
@@ -77,8 +82,22 @@ const styles = StyleSheet.create({
   topBar: {
     backgroundColor: '#FF5000',
     width: 400,
-    height: 30,
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  logo: {
+    width: 300,
+    height: 70,
+    marginTop: 50,
+  },
+  loading: {
+    color: '#000000A0',
+    fontSize: 40,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  
   listContainer: {
     paddingHorizontal: 10,
     paddingTop: 16,
@@ -109,11 +128,6 @@ const styles = StyleSheet.create({
   level: {
     color: '#000000',
     fontSize: 12,
-    fontWeight: 'bold',
-  },
-  loading: {
-    color: '#000000',
-    fontSize: 18,
     fontWeight: 'bold',
   },
   });
