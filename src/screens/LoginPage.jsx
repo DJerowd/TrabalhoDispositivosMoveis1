@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ImageBackground } from 'react-native';
+
 
 const LoginPage = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -7,36 +8,64 @@ const LoginPage = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    if (email && password) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && isValidPassword(password)) {
       setError('');
       onLogin();
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && !isValidPassword(password)) {
+      setError('A senha deve conter letras e números.');
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6 && isValidPassword(password)) {
+      setError('A senha é muito curta.');
     } else {
-      setError('Por favor, preencha todos os campos em falta.');
+      setError('Todos os campos devem ser preenchidos corretamente.');
     }
   };
 
+  const isValidPassword = (password) => {
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    return hasLetter && hasNumber;
+  };
+
   return (
-    <View style={styles.container}>
-
-      <TextInput
-        placeholder="Email"
-        onChangeText={setEmail}
-        value={email}
-        style={styles.input}
+    <View>
+      <ImageBackground
+      source={{ uri: 'https://cutewallpaper.org/21/pokemon-sky-background/Pixel-Sky-Backgrounds,-HD-Wallpapers-++-wallpaper-.jpg' }}
+      style={styles.backgroundImage}
+      >
+      <View style={styles.topBar}>
+      <Text style={styles.title}>P
+      <Image
+          source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaaFdhJy0RipdVyyOvSw1COe_Mw7BBJFm-cw&usqp=CAU' }}
+          style={styles.logo}
       />
-
-      <TextInput 
-        placeholder="Senha"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-        style={styles.input}
-      />
+      KE-DEX</Text>  
+      </View>
       
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        
+        <TextInput
+          placeholder="Email"
+          onChangeText={setEmail}
+          value={email}
+          style={styles.input}
+        />
+
+        <TextInput 
+          placeholder="Senha"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+          style={styles.input}
+        />
+        
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
     </View>
   );
 };
@@ -47,13 +76,34 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#202020',
+    paddingBottom: 100,
+  },
+  topBar: {
+    backgroundColor: '#000000',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400,
+    height: 100,
+    paddingTop: 20,
+  },
+  title: {
+    color: '#E0E0E0',
+    fontSize: 60,
+    fontWeight: 'bold',
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    marginBottom: 20,
+  },
+  backgroundImage: {
+    flex: 1,
   },
   input: {
     width: 300,
     height: 50,
-    backgroundColor: '#626262',
-    borderColor: '#00000070',
+    backgroundColor: '#E0E0E0E0',
+    borderColor: '#00000050',
     borderWidth: 4,
     borderRadius: 10,
     paddingHorizontal: 20,
@@ -68,13 +118,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#626262',
+    color: '#00D2ff',
     fontSize: 20,
     fontWeight: 'bold',
   },
   error: {
-    color: '#FF0000D0',
-    fontSize: 16,
+    color: '#00D2ff',
+    backgroundColor: '#0E0E0EA0',
+    padding: 4,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
   },
