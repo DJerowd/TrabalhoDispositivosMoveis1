@@ -17,9 +17,9 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
-        <ItemListExtra />
+        <ItemList />
       ) : (
-        <LoginPageExtra onLogin={handleLogin} />
+        <LoginPage onLogin={handleLogin} />
       )}
     </SafeAreaView>
   );
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#202020',
   },
 });
 
@@ -57,10 +56,12 @@ Projeto
 
   O projeto deverá ter a seguinte estrutura:
 
+
+
       Página com formulário para login, incluindo email e senha. Validação se ambos os campos
     estão preenchidos antes do envio para a página principal do app. O login será fictício, não
     será vinculado a nenhuma API.
-      
+
       Página Home: listagem de itens, exibindo ao menos: uma imagem e 2 informações sobre o
     item. Os dados deverão vir de uma API, e devem ser paginados via backend.
       

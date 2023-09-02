@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import DigimonLogo from '../assets/DigimonLogo.png';
 
 const LoginPageExtra = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -7,36 +8,56 @@ const LoginPageExtra = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    if (email && password) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && isValidPassword(password)) {
       setError('');
       onLogin();
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && !isValidPassword(password)) {
+      setError('A senha deve conter letras e números.');
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6 && isValidPassword(password)) {
+      setError('A senha é muito curta.');
     } else {
-      setError('Por favor, preencha todos os campos em falta.');
+      setError('Todos os campos devem ser preenchidos corretamente.');
     }
   };
 
+  const isValidPassword = (password) => {
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    return hasLetter && hasNumber;
+  };
+
   return (
-    <View style={styles.container}>
+    <View>
+      <View style={styles.topBar}></View>
+      <View style={styles.container}>
 
-      <TextInput
-        placeholder="Email"
-        onChangeText={setEmail}
-        value={email}
-        style={styles.input}
-      />
+        <Image
+          source={{ uri: 'https://www.pngall.com/wp-content/uploads/2/Digimon-Logo-Transparent.png' }}
+          style={styles.digimonLogo}
+        />
+        <Text style={styles.text}>Login</Text>
+        <TextInput
+          placeholder="Email"
+          onChangeText={setEmail}
+          value={email}
+          style={styles.input}
+        />
 
-      <TextInput 
-        placeholder="Senha"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-        style={styles.input}
-      />
-      
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
+        <TextInput 
+          placeholder="Senha"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+          style={styles.input}
+        />
+        
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -47,13 +68,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#202020',
+    backgroundColor: '#FFFFFF',
+    marginBottom: 150,
+  },
+  topBar: {
+    backgroundColor: '#Ff5000',
+    width: 400,
+    height: 30,
+    backgroundImage: `url(${DigimonLogo})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   input: {
     width: 300,
     height: 50,
-    backgroundColor: '#ffffff',
-    borderColor: '#00000070',
+    backgroundColor: '#F0F0F0',
+    borderColor: '#00000050',
     borderWidth: 4,
     borderRadius: 10,
     paddingHorizontal: 20,
@@ -62,19 +92,30 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
-    backgroundColor: '#000000',
+    backgroundColor: '#FF5000',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 10,
   },
   buttonText: {
-    color: '#ffffff',
+    color: '#F0F0F0',
     fontSize: 20,
     fontWeight: 'bold',
   },
+  text: {
+    color: '#171717',
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  digimonLogo: {
+    width: 320,
+    height: 150,
+    marginBottom: 20,
+  },
   error: {
     color: '#FF0000D0',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
   },
