@@ -6,13 +6,9 @@ const LoginPage = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleItemPress = (item) => {
-    console.log('Item Pressed:', item);
-    navigation.navigate(item);
-  };
-
 // Validação do formato do email
   const handleLogin = () => {
+    console.log('Item Pressed: Login Pokedex');
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 // Validação do email e senha
@@ -26,7 +22,6 @@ const LoginPage = ({ navigation }) => {
     } else {
       setError('Todos os campos devem ser preenchidos corretamente.');
     }
-    
   };
 
 // Validação da composição da senha

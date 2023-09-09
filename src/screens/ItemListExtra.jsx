@@ -2,7 +2,6 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-
 const ItemListExtra = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +33,7 @@ const ItemListExtra = ({ navigation }) => {
 
 // Direcionamento ao clicar em um item
   const handleItemPress = (item) => {
-    console.log('Item Pressed:', item.name);
+    console.log('Item Pressed:', item);
     navigation.navigate('ItemDetailsExtra', { item });
   };
 
@@ -69,7 +68,7 @@ const ItemListExtra = ({ navigation }) => {
                 {item.map((itemData) => renderItem({ item: itemData }))}
               </View>
             )}
-            keyExtractor={(item) => item[0].name}
+            keyExtractor={(item) => item.name}
             contentContainerStyle={styles.listContainer}
           />
         )}

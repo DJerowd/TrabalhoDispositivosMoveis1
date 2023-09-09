@@ -8,6 +8,7 @@ const LoginPageExtra = ({ navigation }) => {
 
 // Validação do formato do email
   const handleLogin = () => {
+    console.log('Item Pressed: Login Digimon');
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 // Validação do email e senha
@@ -73,13 +74,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#FFFFFF',
-    marginBottom: 150,
+    backgroundColor: '#F0F0F0',
   },
   box: {
-    backgroundColor: '#E0E0E0E0',
+    backgroundColor: '#A0A0A0A0',
     borderRadius: 10,
     padding: 10,
+    marginBottom: 150,
   },
   input: {
     width: 300,
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   digimonLogo: {
     width: 320,
-    height: 150,
+    height: 154,
     marginBottom: 20,
   },
   error: {

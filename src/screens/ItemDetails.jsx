@@ -1,10 +1,16 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, ImageBackground } from 'react-native';
+import { React, useState } from 'react';
+import { View, Text, Image, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 
 const ItemDetails = ({ route }) => {
   const { item } = route.params;
-  console.log('Item exibido:', item)
+  const [isShiny, setIsShiny] = useState(false);
+  console.log('Item displayed:', item.name, item.url.split('/')[6])
 
+// Ativa a condição 'Shiny'
+  const toggleShiny = () => {
+    setIsShiny((prevIsShiny) => !prevIsShiny);
+  };
+  
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -21,36 +27,32 @@ const ItemDetails = ({ route }) => {
         KE-DEX</Text>
         </View>
 
+        <TouchableOpacity onPress={toggleShiny} style={styles.toggleButton}>
+          <Text style={styles.toggleButtonText}>
+            {isShiny ? '★' : '☆'}
+          </Text>
+        </TouchableOpacity>
+
         <View style={styles.container}>
+          
           <Image
-            source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${item.url.split('/')[6]}.gif` }}
+            source={{
+              uri: isShiny
+                ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${item.url.split('/')[6]}.png`
+                : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.url.split('/')[6]}.png`,
+            }}
             style={styles.image}
           />
         </View>
         <View style={styles.box}>
-        <Text style={styles.name}>NOME: {item.name}</Text>
-        <Text style={styles.id}>ID: {item.url.split('/')[6]}</Text>
+        <Text style={styles.id}>ID: {item.url.split('/')[6]}       {item.name}</Text>
+
+
         </View>
       </ImageBackground>
     </View>
   );
 };
-
-
-/*
-return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png` }}
-        style={styles.image}
-      />
-      <Text style={styles.name}>{item.name}</Text>
-      <Text>ID: {item.id}</Text>
-    </View>
-  );
-};
-*/
-
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     width: 400,
   },
   loading: {
-    color: '#00D2ff',
+    color: '#ffffff',
     fontSize: 30,
     fontWeight: 'bold',
     alignSelf: 'center',
@@ -92,6 +94,19 @@ const styles = StyleSheet.create({
     height: 50,
   },
 
+  toggleButton: {
+    borderRadius: 50,
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  toggleButtonText: {
+    color: '#F0F0F0D0',
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+
   box: {
     backgroundColor: '#101010C0',
     borderRadius: 10,
@@ -103,26 +118,21 @@ const styles = StyleSheet.create({
   },
   
   image: {
-    width: 300,
-    height: 300,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    paddingBottom: 6,
-    paddingHorizontal: 10,
-    alignSelf: 'center',
+    width: 340,
+    height: 340,
   },
   id: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
-    backgroundColor: '#FFFFFF50',
+    backgroundColor: '#090909',
+    borderColor: '#000000D0',
+    borderWidth: 2,
     borderRadius: 50,
-    width: 100,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
+    paddingBottom: 6,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    alignSelf: 'center',
   },
 });
 

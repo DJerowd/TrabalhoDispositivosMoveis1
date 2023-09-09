@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import LoginPage from './LoginPage';
-import LoginPageExtra from './LoginPageExtra';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const ItemSelect = ({ navigation }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -13,20 +11,25 @@ const ItemSelect = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Selecione um item:</Text>
 
         <TouchableOpacity
           style={styles.pokedexButton}
           onPress={() => handleItemPress('LoginPage')}
         >
-          <Text style={styles.buttonText}>POKEDEX</Text>
+          <Image
+          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png' }}
+          style={styles.pokemonLogo}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.digimonButton}
           onPress={() => handleItemPress('LoginPageExtra')}
         >
-          <Text style={styles.buttonText}>DIGIMON</Text>
+          <Image
+          source={{ uri: 'https://www.pngall.com/wp-content/uploads/2/Digimon-Logo-Transparent.png' }}
+          style={styles.digimonLogo}
+          />
         </TouchableOpacity>
         
     </View>
@@ -36,29 +39,40 @@ const ItemSelect = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 20,
-    marginBottom: 20,
-  },
+
   pokedexButton: {
     backgroundColor: '#A01010',
-    padding: 100,
+    paddingHorizontal: 20,
+    paddingVertical: 40,
     marginHorizontal: 10,
     marginBottom: 40,
+    borderRadius: 10,
+    borderColor: '#6060A090',
+    borderWidth: 4,
   },
+  pokemonLogo: {
+    width: 320,
+    height: 114,
+  },
+
   digimonButton: {
-    backgroundColor: '#4040A0',
-    padding: 100,
+    backgroundColor: '#1010A0',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
     marginHorizontal: 10,
     marginBottom: 40,
+    borderRadius: 10,
+    marginBottom: 120,
+    borderColor: '#ffffff90',
+    borderWidth: 4,
   },
-  buttonText: {
-    color: '#E0E0E0E0',
-    fontSize: 30,
-    fontWeight: 'bold',
+  digimonLogo: {
+    width: 320,
+    height: 154,
   },
 });
 
