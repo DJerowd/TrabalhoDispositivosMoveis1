@@ -1,26 +1,29 @@
 import { React, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const LoginPageExtra = ({ onLogin }) => {
+const LoginPageExtra = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+// Validação do formato do email
   const handleLogin = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+// Validação do email e senha
     if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && isValidPassword(password)) {
       setError('');
-      onLogin();
+      navigation.navigate('ItemListExtra');
     } else if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && !isValidPassword(password)) {
       setError('A senha deve conter letras e números.');
-    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6 && isValidPassword(password)) {
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6) {
       setError('A senha é muito curta.');
     } else {
       setError('Todos os campos devem ser preenchidos corretamente.');
     }
   };
 
+// Validação da composição da senha
   const isValidPassword = (password) => {
     const hasLetter = /[a-zA-Z]/.test(password);
     const hasNumber = /\d/.test(password);
@@ -28,34 +31,37 @@ const LoginPageExtra = ({ onLogin }) => {
   };
 
   return (
-    <View>
-      <View style={styles.topBar}></View>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
 
         <Image
           source={{ uri: 'https://www.pngall.com/wp-content/uploads/2/Digimon-Logo-Transparent.png' }}
           style={styles.digimonLogo}
         />
-        <Text style={styles.text}>Login:</Text>
-        <TextInput
-          placeholder="Email"
-          onChangeText={setEmail}
-          value={email}
-          style={styles.input}
-        />
+        <View style={styles.box}>
+          <Text style={styles.text}>Login:</Text>
+          <TextInput
+            placeholder="Email"
+            onChangeText={setEmail}
+            value={email}
+            style={styles.input}
+          />
 
-        <TextInput 
-          placeholder="Senha"
-          onChangeText={setPassword}
-          value={password}
-          secureTextEntry
-          style={styles.input}
-        />
-        
-        {error ? <Text style={styles.error}>{error}</Text> : null}
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
+          <TextInput 
+            placeholder="Senha"
+            onChangeText={setPassword}
+            value={password}
+            secureTextEntry
+            style={styles.input}
+          />
+          
+          {error ? <Text style={styles.error}>{error}</Text> : null}
+
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Entrar</Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
     </View>
   );
@@ -70,10 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginBottom: 150,
   },
-  topBar: {
-    backgroundColor: '#Ff5000',
-    width: 400,
-    height: 70,
+  box: {
+    backgroundColor: '#E0E0E0E0',
+    borderRadius: 10,
+    padding: 10,
   },
   input: {
     width: 300,
@@ -88,6 +94,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
+    width: 100,
+    alignSelf: 'center',
+    alignItems: 'center',
     backgroundColor: '#FF5000',
     paddingVertical: 10,
     paddingHorizontal: 20,

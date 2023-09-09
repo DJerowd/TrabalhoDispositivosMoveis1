@@ -7,7 +7,7 @@ const ItemListExtra = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
+// Request da API
   useEffect(() => {
     axios.get('https://digimon-api.vercel.app/api/digimon')
       .then((response) => {
@@ -17,11 +17,11 @@ const ItemListExtra = ({ navigation }) => {
       .catch((error) => console.error(error));
   }, []);
 
-
+// Card dos itens
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('ItemDetails', { item })}
+      onPress={() => handleItemPress(item)}
     >
       <Image
         source={{ uri: item.img }}
@@ -32,7 +32,13 @@ const ItemListExtra = ({ navigation }) => {
     </TouchableOpacity>
   );
 
+// Direcionamento ao clicar em um item
+  const handleItemPress = (item) => {
+    console.log('Item Pressed:', item.name);
+    navigation.navigate('ItemDetailsExtra', { item });
+  };
 
+// Formatação da listagem em colunas
   const formatData = (data, numColumns) => {
     const numRows = Math.ceil(data.length / numColumns);
     const formattedData = Array.from({ length: numRows }, (_, rowIndex) => {
@@ -45,7 +51,7 @@ const ItemListExtra = ({ navigation }) => {
   
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View style={styles.topBar}>
       <Image
         source={{ uri: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Digimon_Logo.svg/1200px-Digimon_Logo.svg.png` }}
@@ -82,14 +88,13 @@ const styles = StyleSheet.create({
   topBar: {
     backgroundColor: '#FF5000',
     width: 400,
-    height: 140,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo: {
     width: 300,
     height: 70,
-    marginTop: 50,
   },
   loading: {
     color: '#000000A0',

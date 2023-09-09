@@ -1,27 +1,35 @@
 import { React, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ImageBackground } from 'react-native';
 
-
-const LoginPage = ({ onLogin }) => {
+const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const handleItemPress = (item) => {
+    console.log('Item Pressed:', item);
+    navigation.navigate(item);
+  };
+
+// Validação do formato do email
   const handleLogin = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+// Validação do email e senha
     if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && isValidPassword(password)) {
       setError('');
-      onLogin();
+      navigation.navigate('ItemList');
     } else if (email.match(emailPattern) && email.length >= 10 && password.length >= 6 && !isValidPassword(password)) {
       setError('A senha deve conter letras e números.');
-    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6 && isValidPassword(password)) {
+    } else if (email.match(emailPattern) && email.length >= 10 && password.length < 6) {
       setError('A senha é muito curta.');
     } else {
       setError('Todos os campos devem ser preenchidos corretamente.');
     }
+    
   };
 
+// Validação da composição da senha
   const isValidPassword = (password) => {
     const hasLetter = /[a-zA-Z]/.test(password);
     const hasNumber = /\d/.test(password);
@@ -29,7 +37,7 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ImageBackground
       source={{ uri: 'https://cutewallpaper.org/21/pokemon-sky-background/Pixel-Sky-Backgrounds,-HD-Wallpapers-++-wallpaper-.jpg' }}
       style={styles.backgroundImage}
@@ -65,6 +73,7 @@ const LoginPage = ({ onLogin }) => {
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
+      
     </ImageBackground>
     </View>
   );
@@ -91,14 +100,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-
   topBar: {
     backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
     width: 400,
-    height: 120,
-    paddingTop: 40,
+    height: 80,
   },
   title: {
     color: '#ffffff',
@@ -108,7 +115,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 50,
     height: 50,
-    marginBottom: 20,
   },
 
   input: {
@@ -132,6 +138,29 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#00D2ff',
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  pageNavigation: {
+    paddingHorizontal: 100,
+    flexDirection: 'row',
+    backgroundColor: '#000000',
+  },
+  activeButton: {
+    backgroundColor: '#101010',
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 40,
+  },
+  inactiveButton: {
+    backgroundColor: '#404040',
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 40,
+  },
+  buttonText: {
+    color: '#E0E0E0E0',
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });

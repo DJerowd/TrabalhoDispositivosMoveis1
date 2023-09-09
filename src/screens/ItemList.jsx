@@ -1,14 +1,21 @@
+
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import ItemDetails from './ItemDetails';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
+  const navigation = useNavigation();
 
-
+// Request da API e formatação de páginas
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/?offset=${(currentPage - 1) * itemsPerPage}&limit=${itemsPerPage}`)
@@ -20,6 +27,7 @@ const ItemList = () => {
   }, [currentPage]);
 
 
+// Card dos itens
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
@@ -30,19 +38,21 @@ const ItemList = () => {
         style={styles.image}
       />
       <Text style={styles.name}>{item.name}</Text>
-      <Text style={styles.url}>{item.url}</Text>
+      <Text style={styles.id}>ID: {item.url.split('/')[6]}</Text>
     </TouchableOpacity>
   );
 
 
+// Direcionamento ao clicar em um item
   const handleItemPress = (item) => {
-    console.log('Item Pressed:', item.name);
+    console.log('Item Pressed:', item);
+    navigation.navigate('ItemDetails', { item });
   };
 
+// Controle de paginas
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
-
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
@@ -51,7 +61,7 @@ const ItemList = () => {
 
   
 return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ImageBackground
       source={{ uri: 'https://cutewallpaper.org/21/pokemon-sky-background/Pixel-Sky-Backgrounds,-HD-Wallpapers-++-wallpaper-.jpg' }}
       style={styles.backgroundImage}
@@ -76,8 +86,8 @@ return (
         />
       )}
     </View>
+    
     <View style={styles.pageBar}>
-
       <TouchableOpacity style={styles.pageButton} onPress={handlePrevPage}>
         <Text style={styles.pageButtonText}>Página Anterior</Text>
       </TouchableOpacity>
@@ -87,7 +97,6 @@ return (
       <TouchableOpacity style={styles.pageButton} onPress={handleNextPage}>
         <Text style={styles.pageButtonText}>Próxima Página</Text>
       </TouchableOpacity>
-
     </View>
 
     </ImageBackground>
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
-    paddingHorizontal: 4,
+    paddingHorizontal: 10,
     flexDirection: 'column',
   },
   backgroundImage: {
@@ -111,9 +120,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     alignSelf: 'center',
-    backgroundColor: '#0E0E0EA0',
-    padding: 4,
-    paddingHorizontal: 8,
+    backgroundColor: '#0E0E0E',
+    padding: 6,
+    paddingHorizontal: 10,
     borderRadius: 10,
   },
 
@@ -122,8 +131,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 400,
-    height: 120,
-    paddingTop: 40,
+    height: 80,
   },
   title: {
     color: '#ffffff',
@@ -133,7 +141,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 50,
     height: 50,
-    marginBottom: 20,
   },
 
   item: {
@@ -145,8 +152,8 @@ const styles = StyleSheet.create({
   },
   image: {
     backgroundColor: '#000000',
-    width: 350,
-    height: 350,
+    width: 330,
+    height: 330,
     margin: 4,
     borderRadius: 20,
   },
@@ -155,9 +162,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-  url: {
+  id: {
     color: '#ffffff',
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'bold',
     paddingBottom: 4,
   },
@@ -170,18 +177,18 @@ const styles = StyleSheet.create({
   pageButton: {
     backgroundColor: '#000000',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
   },
   pageButtonText: {
     color: '#00D2ff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   pageText: {
     backgroundColor: '#000000',
     paddingVertical: 10,
     color: '#00D2ff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

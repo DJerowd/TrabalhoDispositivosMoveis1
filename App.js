@@ -2,29 +2,97 @@ import { React, useState } from 'react';
 import {SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
+import ItemDetails from './src/screens/ItemDetails';
+import ItemDetailsExtra from './src/screens/ItemDetailsExtra';
 import LoginPageExtra from './src/screens/LoginPageExtra';
 import ItemListExtra from './src/screens/ItemListExtra';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ItemSelect from './src/screens/ItemSelect';
 
+const Stack = createStackNavigator();
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoggedInExtra, setIsLoggedInExtra] = useState(false);
-  
-  const [currentPage, setCurrentPage] = useState('LoginPage');
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ItemSelect">
+      <Stack.Screen 
+          name="ItemSelect" 
+          component={ItemSelect} 
+          options={{
+            title: 'Seleção',
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#E0E0E0',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen 
+          name="LoginPage" 
+          component={LoginPage} 
+          options={{
+            title: 'Login',
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#E0E0E0',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="ItemList"
+          component={ItemList}
+          options={{
+            title: 'POKEDEX',
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#E0E0E0',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen 
+          name="ItemDetails" 
+          component={ItemDetails} 
+          options={{
+            title: 'POKEDEX',
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#E0E0E0',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen 
+          name="LoginPageExtra" 
+          component={LoginPageExtra} 
+          options={{
+            title: 'Login',
+            headerStyle: { backgroundColor: '#FF5000' },
+            headerTintColor: '#000000',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="ItemListExtra"
+          component={ItemListExtra}
+          options={{
+            title: 'DIGIMON',
+            headerStyle: { backgroundColor: '#FF5000' },
+            headerTintColor: '#000000',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen 
+          name="ItemDetailsExtra" 
+          component={ItemDetailsExtra} 
+          options={{
+            title: 'DIGIMON',
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#E0E0E0',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
 
-  const handleLoginExtra = () => {
-    setIsLoggedInExtra(true);
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-
+/* 
   return (
     <SafeAreaView style={styles.container}>
       {currentPage === 'LoginPage' ? (
@@ -59,6 +127,16 @@ const App = () => {
     </SafeAreaView>
   );
 };
+*/
+
+/*
+  return (
+    <SafeAreaView style={styles.container}>
+      <ItemDetails/>
+    </SafeAreaView>
+  );
+};
+*/
 
 
 const styles = StyleSheet.create({
@@ -67,6 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   pageNavigation: {
     paddingHorizontal: 100,
     flexDirection: 'row',
