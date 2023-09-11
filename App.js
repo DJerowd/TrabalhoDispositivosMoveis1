@@ -133,6 +133,7 @@ Projeto
     para ficar visualmente agradável. Será permitida a utilização de bibliotecas externas, seja
     para funcionalidades ou componentes.
 
+    
     API:  https://pokeapi.co/api/v2/pokemon
     API2: https://digimon-api.vercel.app/api/digimon
 */
