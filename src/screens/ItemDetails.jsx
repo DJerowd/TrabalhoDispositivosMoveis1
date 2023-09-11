@@ -1,12 +1,38 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 
 const ItemDetails = ({ route }) => {
   const { item } = route.params;
-  const [isShiny, setIsShiny] = useState(false);
   console.log('Item displayed:', item.name, item.url.split('/')[6])
+  const [isShiny, setIsShiny] = useState(false);
+  const [types, setTypes] = useState([]);
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [abilities, setAbilities] = useState([]);
 
-// Ativa a condição 'Shiny'
+// Função para coletar as informações no endereço
+  useEffect(() => {
+    const fetchPokemonTypes = async () => {
+      try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${item.url.split('/')[6]}/`);
+        const typesData = response.data.types.map((typeData) => typeData.type.name);
+        const weightData = response.data.weight;
+        const heightData = response.data.height;
+        const abilitiesData = response.data.abilities.map((abilityData) => abilityData.ability.name);
+        setTypes(typesData);
+        setWeight(weightData);
+        setHeight(heightData);
+        setAbilities(abilitiesData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPokemonTypes();
+  }, [item]);
+
+
+// Ativa e desativa a condição 'Shiny'
   const toggleShiny = () => {
     setIsShiny((prevIsShiny) => !prevIsShiny);
   };
@@ -46,7 +72,10 @@ const ItemDetails = ({ route }) => {
         </View>
         <View style={styles.box}>
         <Text style={styles.id}>ID: {item.url.split('/')[6]}       {item.name}</Text>
-
+        <Text style={styles.info}>Tipos: {types.join(', ')}</Text>
+        <Text style={styles.info}>Peso: {weight / 10} kg</Text>
+        <Text style={styles.info}>Altura: {height / 10} m</Text>
+        <Text style={styles.info}>Habilidades: {abilities.join(', ')}</Text>
 
         </View>
       </ImageBackground>
@@ -60,11 +89,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
   },
   backgroundImage: {
     flex: 1,
-    width: 400,
+    width: 394,
   },
   loading: {
     color: '#ffffff',
@@ -98,8 +126,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 50,
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   toggleButtonText: {
     color: '#F0F0F0D0',
@@ -107,19 +133,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  image: {
+    width: 360,
+    height: 360,
+  },
+
   box: {
+    flex: 1,
     backgroundColor: '#101010C0',
     borderRadius: 10,
     borderColor: '#000000D0',
     borderWidth: 4,
     height: 300,
-    padding: 20,
+    padding: 10,
     margin: 10,
-  },
-  
-  image: {
-    width: 340,
-    height: 340,
+    marginHorizontal: 10,
   },
   id: {
     fontSize: 24,
@@ -129,9 +157,20 @@ const styles = StyleSheet.create({
     borderColor: '#000000D0',
     borderWidth: 2,
     borderRadius: 50,
-    paddingBottom: 6,
     paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingVertical: 4,
+    alignSelf: 'center',
+  },
+  info: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    backgroundColor: '#090909',
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+    marginTop: 8,
+    width: 340,
     alignSelf: 'center',
   },
 });

@@ -42,6 +42,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   
+  name: {
+    backgroundColor: '#00AA00',
+    color: '#F0F0F0',
+    borderColor: '#F0F0F0',
+    borderWidth: 2,
+    borderRadius: 20,
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    textShadowColor: '#000000',
+    textShadowRadius: 30,    
+  },
+
   logo: {
     width: 300,
     height: 70,
@@ -62,20 +77,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#000000',
   },
-  name: {
-    backgroundColor: '#00AA00',
-    color: '#F0F0F0',
-    borderColor: '#F0F0F0',
-    borderWidth: 2,
-    borderRadius: 20,
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    textShadowColor: '#000000',
-    textShadowRadius: 30,    
-  },
+
   level: {
     backgroundColor: '#00A0A0',
     color: '#F0F0F0',

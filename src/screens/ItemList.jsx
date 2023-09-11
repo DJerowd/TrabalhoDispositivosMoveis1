@@ -1,8 +1,6 @@
-
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import ItemDetails from './ItemDetails';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -42,7 +40,6 @@ const ItemList = () => {
     </TouchableOpacity>
   );
 
-
 // Direcionamento ao clicar em um item
   const handleItemPress = (item) => {
     console.log('Item Pressed:', item);
@@ -58,7 +55,6 @@ const ItemList = () => {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
-
   
 return (
     <View style={{ flex: 1 }}>
@@ -152,9 +148,9 @@ const styles = StyleSheet.create({
   },
   image: {
     backgroundColor: '#000000',
-    width: 330,
-    height: 330,
-    margin: 4,
+    width: 300,
+    height: 300,
+    margin: 10,
     borderRadius: 20,
   },
   name: {
@@ -192,6 +188,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 
 export default ItemList;

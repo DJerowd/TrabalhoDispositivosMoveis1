@@ -1,14 +1,13 @@
-import { React, useState } from 'react';
-import {SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { React } from 'react';
+import ItemSelect from './src/screens/ItemSelect';
 import LoginPage from './src/screens/LoginPage';
 import ItemList from './src/screens/ItemList';
 import ItemDetails from './src/screens/ItemDetails';
-import ItemDetailsExtra from './src/screens/ItemDetailsExtra';
 import LoginPageExtra from './src/screens/LoginPageExtra';
 import ItemListExtra from './src/screens/ItemListExtra';
+import ItemDetailsExtra from './src/screens/ItemDetailsExtra';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ItemSelect from './src/screens/ItemSelect';
 
 const Stack = createStackNavigator();
 
@@ -91,86 +90,6 @@ const App = () => {
   );
 };
 
-
-/* 
-  return (
-    <SafeAreaView style={styles.container}>
-      {currentPage === 'LoginPage' ? (
-        isLoggedIn ? (
-          <ItemList />
-        ) : (
-          <LoginPage onLogin={handleLogin} />
-        )
-      ) : (
-        isLoggedInExtra ? (
-          <ItemListExtra />
-        ) : (
-          <LoginPageExtra onLogin={handleLoginExtra} />
-        )
-      )}
-   
-
-      <View style={styles.pageNavigation}>
-        <TouchableOpacity
-          style={currentPage === 'LoginPage' ? styles.activeButton : styles.inactiveButton}
-          onPress={() => handlePageChange('LoginPage')}
-        >
-          <Text style={styles.buttonText}>POKEDEX</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={currentPage === 'LoginPageExtra' ? styles.activeButton : styles.inactiveButton}
-          onPress={() => handlePageChange('LoginPageExtra')}
-        >
-          <Text style={styles.buttonText}>DIGIMON</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
-*/
-
-/*
-  return (
-    <SafeAreaView style={styles.container}>
-      <ItemDetails/>
-    </SafeAreaView>
-  );
-};
-*/
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  pageNavigation: {
-    paddingHorizontal: 100,
-    flexDirection: 'row',
-    backgroundColor: '#000000',
-  },
-  activeButton: {
-    backgroundColor: '#101010',
-    padding: 10,
-    marginHorizontal: 10,
-    marginBottom: 40,
-  },
-  inactiveButton: {
-    backgroundColor: '#404040',
-    padding: 10,
-    marginHorizontal: 10,
-    marginBottom: 40,
-  },
-  buttonText: {
-    color: '#E0E0E0E0',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-});
-
-
 export default App;
 
 /*
@@ -192,8 +111,6 @@ Projeto
 
   O projeto deverá ter a seguinte estrutura:
 
-
-
       Página com formulário para login, incluindo email e senha. Validação se ambos os campos
     estão preenchidos antes do envio para a página principal do app. O login será fictício, não
     será vinculado a nenhuma API.
@@ -203,8 +120,6 @@ Projeto
       
       Página de detalhes sobre o item: deve ser acessada através da página de listagem (ao
     clicar no item da listagem), e conter dados vindos de uma API.
-    
-
     
       Página extra: Nessa página vocês podem escolher renderizar uma outra listagem
     (requisitando uma API diferente da página Home), outra tela com detalhes, tela com
@@ -218,6 +133,6 @@ Projeto
     para ficar visualmente agradável. Será permitida a utilização de bibliotecas externas, seja
     para funcionalidades ou componentes.
 
-
-    API: https://pokeapi.co/api/v2/pokemon
+    API:  https://pokeapi.co/api/v2/pokemon
+    API2: https://digimon-api.vercel.app/api/digimon
 */

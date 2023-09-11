@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0F0F0',
-    width: 400,
+    width: 394,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   topBar: {
     backgroundColor: '#FF5000',
@@ -110,13 +112,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  
   item: {
     backgroundColor: '#ffffff',
     padding: 2,
     alignItems: 'center',
     width: 180,
-    margin: 4,
+    marginHorizontal: 4,
+    marginVertical: 6,
   },
+
   image: {
     backgroundColor: '#000000',
     width: 150,
@@ -135,13 +140,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   });
-
   
 export default ItemListExtra;
-
-
-
-
-
-
-

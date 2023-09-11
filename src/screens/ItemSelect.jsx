@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const ItemSelect = ({ navigation }) => {
-  const [selectedItem, setSelectedItem] = useState(null);
 
+// Direcionamento para a página selecionada
   const handleItemPress = (item) => {
     console.log('Item Pressed:', item);
     navigation.navigate(item);
@@ -46,8 +45,8 @@ const styles = StyleSheet.create({
 
   pokedexButton: {
     backgroundColor: '#A01010',
-    paddingHorizontal: 20,
-    paddingVertical: 40,
+    paddingHorizontal: 10,
+    paddingVertical: 60,
     marginHorizontal: 10,
     marginBottom: 40,
     borderRadius: 10,
@@ -61,12 +60,12 @@ const styles = StyleSheet.create({
 
   digimonButton: {
     backgroundColor: '#1010A0',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 40,
     marginHorizontal: 10,
     marginBottom: 40,
     borderRadius: 10,
-    marginBottom: 120,
+    marginBottom: 40,
     borderColor: '#ffffff90',
     borderWidth: 4,
   },
