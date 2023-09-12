@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: 394,
   },
   loading: {
     color: '#ffffff',
@@ -109,7 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 400,
     height: 80,
   },
   title: {
@@ -123,31 +121,31 @@ const styles = StyleSheet.create({
   },
 
   toggleButton: {
-    borderRadius: 50,
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'cent',
   },
   toggleButtonText: {
     color: '#F0F0F0D0',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 
   image: {
-    width: 360,
-    height: 360,
+    width: 300,
+    height: 300,
+    marginBottom: 50,
   },
 
   box: {
-    flex: 1,
     backgroundColor: '#101010C0',
     borderRadius: 10,
     borderColor: '#000000D0',
     borderWidth: 4,
-    height: 300,
     padding: 10,
-    margin: 10,
-    marginHorizontal: 10,
+    margin: 4,
+    marginHorizontal: 4,
   },
   id: {
     fontSize: 24,
@@ -158,7 +156,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 50,
     paddingHorizontal: 20,
-    paddingVertical: 4,
+    paddingVertical: 2,
     alignSelf: 'center',
   },
   info: {
@@ -167,10 +165,10 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: '#090909',
     borderRadius: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingVertical: 6,
-    marginTop: 8,
-    width: 340,
+    marginTop: 10,
+    width: 330,
     alignSelf: 'center',
   },
 });

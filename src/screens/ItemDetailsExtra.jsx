@@ -7,14 +7,19 @@ const ItemDetailsExtra = ({ route }) => {
   
   return (
     <View style={styles.container}>
+      <View style={styles.topBar}>
+
+      <Image
+        source={{ uri: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Digimon_Logo.svg/1200px-Digimon_Logo.svg.png` }}
+        style={styles.logo}
+      />
+
+      </View>
       <ImageBackground
       source={{ uri: 'https://i.pinimg.com/originals/76/5b/7c/765b7c2c847900a86e7d03430d091c02.jpg' }}
       style={styles.backgroundImage}
       >
-        <Image
-        source={{ uri: `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Digimon_Logo.svg/1200px-Digimon_Logo.svg.png` }}
-        style={styles.logo}
-      />
+        
         <Text style={styles.name}>{item.name}</Text>
         <View style={styles.imageBox}>
         <Image
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     fontSize: 30,
     fontWeight: 'bold',
+    marginTop: 50,
     marginBottom: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -57,10 +63,17 @@ const styles = StyleSheet.create({
     textShadowRadius: 30,    
   },
 
+  topBar: {
+    backgroundColor: '#000000',
+    height: 80,
+    width: 400,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   logo: {
     width: 300,
     height: 70,
-    marginBottom: 50,
+    marginBottom: 10,
   },
   imageBox: {
     width: 320,

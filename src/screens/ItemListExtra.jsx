@@ -82,13 +82,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0F0F0',
-    width: 394,
     alignItems: 'center',
     justifyContent: 'center',
   },
   topBar: {
     backgroundColor: '#FF5000',
-    width: 400,
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
@@ -105,8 +103,8 @@ const styles = StyleSheet.create({
   },
   
   listContainer: {
-    paddingHorizontal: 10,
-    paddingTop: 16,
+    paddingHorizontal: 4,
+    paddingTop: 4,
   },
   row: {
     flexDirection: 'row',
@@ -117,8 +115,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 2,
     alignItems: 'center',
-    width: 180,
-    marginHorizontal: 4,
+    width: 160,
+    marginHorizontal: 6,
     marginVertical: 6,
   },
 
